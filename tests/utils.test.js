@@ -1,6 +1,7 @@
 const mocha = require("mocha")
 const chai = require("chai")
 const utils = require("../utils")
+const { assert } = require("chai")
 const expect = chai.expect
 
 // ========================================================
@@ -9,7 +10,7 @@ const expect = chai.expect
 // Lambdas lexically bind this and cannot access the Mocha context.
 // ========================================================
 
-it("should say hello", function() {
+it("Should say hello", function() {
   const hello = utils.sayHello()
   expect(hello).to.be.a("string")
   expect(hello).to.equal("Hello")
@@ -26,8 +27,50 @@ it("should say hello", function() {
 // This is called "Red-Green-Refactor"
 // ========================================================
 
+it("Should return the area of a rectangle", function () {
+  let area = utils.area(3, 5);
+  expect(area).to.be.a('number');
+  expect(area).to.equal(15);
 
+  area = utils.area(0, 0);
+  expect(area).to.be.a('number');
+  expect(area).to.equal(0);
 
+  area = utils.area(-7, 9);
+  expect(area).to.be.null;
+
+  area = utils.area(-13, -9);
+  expect(area).to.be.null;
+});
+
+it("Should return the perimeter of a rectangle", function () {
+  let perimeter = utils.perimeter(3, 5);
+  expect(perimeter).to.be.a('number');
+  expect(perimeter).to.equal(16);
+
+  perimeter = utils.perimeter(0, 0);
+  expect(perimeter).to.be.a('number');
+  expect(perimeter).to.equal(0);
+
+  perimeter = utils.perimeter(-7, 9);
+  expect(perimeter).to.be.null;
+
+  perimeter = utils.perimeter(-13, -9);
+  expect(perimeter).to.be.null;
+});
+
+it("Should return the area of a circle, given its radius", function () {
+  let circleArea = utils.circleArea(5);
+  expect(circleArea).to.be.a('number');
+  expect(circleArea).to.equal(Math.PI * (5 ** 2));
+
+  circleArea = utils.circleArea(0);
+  expect(circleArea).to.be.a('number');
+  expect(circleArea).to.equal(0);
+
+  circleArea = utils.circleArea(-7);
+  expect(circleArea).to.be.null;
+});
 
 // ========================================================
 // Level 2 Challenges

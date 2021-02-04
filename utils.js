@@ -7,15 +7,15 @@ const sayHello = () => {
 }
 
 const area = (w, h) => {
-  // should return the area
+  return (w >= 0 && h >= 0) ? w * h : null;
 }
 
 const perimeter = (w, h) => {
-  // should return the perimeter
+  return (w >= 0 && h >= 0) ? 2 * (w + h) : null;
 }
 
 const circleArea = r => {
-  // should return the area of the circle
+  return r >= 0 ? Math.PI * (r ** 2) : null;
 }
 
 // ========================================================

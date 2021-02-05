@@ -61,15 +61,22 @@ const removeItemFromCart = (item) => {
   if (index !== -1) {
     if (shoppingCart[index].quantity > 1) {
       shoppingCart[index].quantity -= 1;
-      return []
     } else {
-      return shoppingCart.splice(index, 1);
+      shoppingCart.splice(index, 1);
     }
   }
+}
+
+const getCost = () => {
+  let cost = 0;
+  shoppingCart.forEach(item => {
+    cost += item.price * item.quantity;
+  })
+  return parseFloat(cost.toFixed(2));
 }
 
 module.exports = {
   sayHello, area, perimeter, circleArea,
   clearCart, createItem, getShoppingCart, addItemToCart,
-  getNumItemsInCart, removeItemFromCart
+  getNumItemsInCart, removeItemFromCart, getCost
 }

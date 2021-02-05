@@ -90,18 +90,11 @@ it("Should return an array containing all items in cart", function () {
 });
 
 it("Should add a new item to the shopping cart", function () {
-  const item1 = utils.createItem('apple', 0.99)
-  const item2 = utils.createItem('orange', 0.99)
-  utils.addItemToCart(item1);
-  utils.addItemToCart(item1);
-  utils.addItemToCart(item2);
+  const item = utils.createItem('apple', 0.99)
+  utils.addItemToCart(item);
   const cart = utils.getShoppingCart();
-  expect(cart[0] && cart[1]).to.be.a('object');
-  expect(cart[0] && cart[1]).to.have.keys('name', 'price', 'quantity');
-  expect(cart[0]).to.have.property('name', 'apple');
-  expect(cart[0]).to.have.property('quantity', 2);
-  expect(cart[1]).to.have.property('name', 'orange');
-  expect(cart[1]).to.have.property('quantity', 1);
+  expect(cart[0]).to.be.a('object');
+  expect(cart[0]).to.have.keys('name', 'price', 'quantity');
 });
 
 it("Should return the number of items in the cart", function () {
@@ -115,25 +108,38 @@ it("Should return the number of items in the cart", function () {
 });
 
 it("Should remove items from cart", function () {
-  const item1 = utils.createItem('apple', 0.99)
-  const item2 = utils.createItem('orange', 0.99)
-  utils.addItemToCart(item1);
-  utils.addItemToCart(item1);
-  utils.addItemToCart(item2);
+  const item = utils.createItem('apple', 0.99)
+  utils.addItemToCart(item);
+  utils.removeItemFromCart(item);
   const cart = utils.getShoppingCart();
-  const numApples = cart[0].quantity;
-  utils.removeItemFromCart(item1);
-  utils.removeItemFromCart(item2);
-  expect(cart[0].quantity).to.equal(numApples - 1);
-  expect(cart[1]).to.be.undefined;
+  expect(cart[0]).to.be.undefined;
 });
 
 // ========================================================
 // Stretch Challenges
 // ========================================================
 
-// it("Should update the count of items in the cart");
+it("Should update the count of items in the cart", function () {
+  const item = utils.createItem('apple', 0.99)
+  utils.addItemToCart(item);
+  utils.addItemToCart(item);
+  const cart = utils.getShoppingCart();
+  expect(cart).to.have.lengthOf(1);
+  expect(cart[0]).to.have.property('quantity', 2);
+});
 
-// it("Should validate that an empty cart has 0 items");
+it("Should validate that an empty cart has 0 items", function () {
+  const numItems = utils.getNumItemsInCart();
+  expect(numItems).to.be.a('number');
+  expect(numItems)
+});
 
-// it("Should return the total cost of all items in the cart");
+it("Should return the total cost of all items in the cart", function () {
+  const item1 = utils.createItem('apple', 0.99)
+  const item2 = utils.createItem('orange', 0.99)
+  utils.addItemToCart(item1);
+  utils.addItemToCart(item1);
+  utils.addItemToCart(item2);
+  const cost = utils.getCost();
+  expect(cost).to.equal(2.97);
+});

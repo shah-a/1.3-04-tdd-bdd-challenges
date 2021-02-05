@@ -15,7 +15,7 @@ const perimeter = (w, h) => {
 }
 
 const circleArea = r => {
-  return r >= 0 ? Math.PI * (r ** 2) : null;
+  return (r >= 0) ? Math.PI * (r ** 2) : null;
 }
 
 // ========================================================

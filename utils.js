@@ -36,19 +36,36 @@ const createItem = (name, price) => {
 }
 
 const getShoppingCart = () => {
-  // should return the current state of shopping cart
+  return shoppingCart;
 }
 
 const addItemToCart = (item) => {
-  // should add item to shopping cart
+  const index = shoppingCart.indexOf(item);
+  if (index !== -1) {
+    shoppingCart[index].quantity += 1;
+  } else {
+    shoppingCart.push(item);
+  }
 }
 
 const getNumItemsInCart = () => {
-  // should return the total quantity of items in cart
+  let numItems = 0;
+  shoppingCart.forEach((item) => {
+    numItems += item.quantity;
+  })
+  return numItems;
 }
 
 const removeItemFromCart = (item) => {
-  // should remove item from shopping cart
+  const index = shoppingCart.indexOf(item);
+  if (index !== -1) {
+    if (shoppingCart[index].quantity > 1) {
+      shoppingCart[index].quantity -= 1;
+      return []
+    } else {
+      return shoppingCart.splice(index, 1);
+    }
+  }
 }
 
 module.exports = {
